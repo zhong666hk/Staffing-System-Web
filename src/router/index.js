@@ -52,6 +52,11 @@ const routes = [
         name: 'job_level',
         component: () => import('../views/employee/job_level.vue')
       },
+      {
+        path: '/resume',
+        name: 'resume',
+        component: () => import('../views/employee/resume.vue')
+      },
     ]
   },
 

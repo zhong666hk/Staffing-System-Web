@@ -28,9 +28,9 @@
            ok-text="确认" cancel-text="取消">
     <a-form :model="jobLevel" :label-col="{span: 4}" :wrapper-col="{ span: 20 }">
       <a-form-item label="职位名称">
-        <a-input v-model:value="jobLevel.name" />
+        <position-select-view width="200px" v-model="jobLevel.name"></position-select-view>
       </a-form-item>
-      <a-form-item label="">
+      <a-form-item label="职位等级">
         <a-input v-model:value="jobLevel.titleLevel" />
       </a-form-item>
     </a-form>
@@ -41,9 +41,11 @@
 import { defineComponent, ref, onMounted } from 'vue';
 import {notification} from "ant-design-vue";
 import {deleteJobLevel, getJobLevel, saveJobLevel} from "@/API";
+import PositionSelectView from "@/components/Position-select-view.vue";
 
 export default defineComponent({
   name: "jobLevel-view",
+  components: {PositionSelectView},
   setup() {
     const visible = ref(false);
     let jobLevel = ref({

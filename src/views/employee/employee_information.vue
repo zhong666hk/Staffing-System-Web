@@ -22,6 +22,7 @@
           <a @click="onEdit(record)">编辑</a>
         </a-space>
       </template>
+
     </template>
   </a-table>
   <a-modal v-model:visible="visible" title="" @ok="handleOk"
@@ -44,8 +45,9 @@
       >
         <a-input v-model:value="employeeInformation.idCard" />
       </a-form-item>
-      <a-form-item label="民族" name="nationId">
-        <a-input v-model:value="employeeInformation.nationId" />
+      <a-form-item label="民族" name="nationName">
+<!--        <a-input v-model:value="employeeInformation.nationId" />-->
+        <NationSelectView width="200px" v-model="employeeInformation.nationName"></NationSelectView>
       </a-form-item>
       <a-form-item label="籍贯" name="nativePlace">
         <a-input v-model:value="employeeInformation.nativePlace" />
@@ -63,14 +65,17 @@
       <a-form-item label="联系地址" name="address">
         <a-input v-model:value="employeeInformation.address" />
       </a-form-item>
-      <a-form-item label="所属部门" name="departmentId">
-        <a-input v-model:value="employeeInformation.departmentId" />
+      <a-form-item label="所属部门" name="departmentName">
+<!--        <a-input v-model:value="employeeInformation.departmentId" />-->
+        <DepartmentSelectView width="200px" v-model="employeeInformation.departmentName"></DepartmentSelectView>
       </a-form-item>
-      <a-form-item label="职称ID" name="jobLevelId">
-        <a-input v-model:value="employeeInformation.jobLevelId" />
+      <a-form-item label="职称级别" name="jobLevelName">
+<!--        <a-input v-model:value="employeeInformation.jobLevelId" />-->
+        <JobLevelSelectView width="200px" v-model="employeeInformation.jobLevelName"></JobLevelSelectView>
       </a-form-item>
-      <a-form-item label="职位ID" name="posId">
-        <a-input v-model:value="employeeInformation.posId" />
+      <a-form-item label="职位ID" name="posName">
+<!--        <a-input v-model:value="employeeInformation.posId" />-->
+        <PositionSelectView width="200px" v-model="employeeInformation.posName"></PositionSelectView>
       </a-form-item>
       <a-form-item label="最高学历" name="tiptopDegree">
         <a-input v-model:value="employeeInformation.tiptopDegree" />
@@ -85,11 +90,14 @@
         <a-date-picker v-model:value="employeeInformation.beginDate" valueFormat="YYYY-MM-DD" placeholder="请选择日期" />
       </a-form-item>
       <a-form-item label="在职状态" name="workState">
-        <a-input v-model:value="employeeInformation.workState" />
+        <a-radio-group v-model:value="employeeInformation.workState" name="workState">
+          <a-radio value="1">在职</a-radio>
+          <a-radio value="2">离职</a-radio>
+        </a-radio-group>
       </a-form-item>
-      <a-form-item label="工号" name="workId">
-        <a-input v-model:value="employeeInformation.workId" />
-      </a-form-item>
+<!--      <a-form-item label="工号" name="workId">-->
+<!--        <a-input v-model:value="employeeInformation.workId" />-->
+<!--      </a-form-item>-->
       <a-form-item label="合同期限" name="contractTerm">
         <a-input v-model:value="employeeInformation.contractTerm" />
       </a-form-item>
@@ -108,9 +116,9 @@
       <a-form-item label="工龄" name="workAge">
         <a-input v-model:value="employeeInformation.workAge" />
       </a-form-item>
-      <a-form-item label="员工id" name="employeeId">
-        <a-input v-model:value="employeeInformation.employeeId" />
-      </a-form-item>
+<!--      <a-form-item label="员工id" name="employeeId">-->
+<!--        <a-input v-model:value="employeeInformation.employeeId" />-->
+<!--      </a-form-item>-->
     </a-form>
   </a-modal>
 </template>
@@ -119,9 +127,13 @@
 import { defineComponent, ref, onMounted } from 'vue';
 import {notification} from "ant-design-vue";
 import {deleteEmployeeInformation, getEmployeeInformation, saveEmployeeInformation} from "@/API";
-
+import DepartmentSelectView from "@/components/Department-select-view.vue";
+import NationSelectView from "@/components/Nation-select-view.vue";
+import PositionSelectView from "@/components/Position-select-view.vue";
+import JobLevelSelectView from "@/components/JobLevel-select-view.vue";
 export default defineComponent({
   name: "employeeInformation-view",
+  components: {JobLevelSelectView, PositionSelectView, NationSelectView, DepartmentSelectView},
   setup() {
     const visible = ref(false);
     let employeeInformation = ref({
@@ -130,14 +142,14 @@ export default defineComponent({
       gender: undefined,
       birthday: undefined,
       idCard: undefined,
-      nationId: undefined,
+      nationName: undefined,
       nativePlace: undefined,
       email: undefined,
       phone: undefined,
       address: undefined,
-      departmentId: undefined,
-      jobLevelId: undefined,
-      posId: undefined,
+      departmentName: undefined,
+      jobLevelName: undefined,
+      posName: undefined,
       tiptopDegree: undefined,
       specialty: undefined,
       school: undefined,
@@ -177,6 +189,13 @@ export default defineComponent({
       title: '性别 1为男 2为女',
       dataIndex: 'gender',
       key: 'gender',
+      customRender:function (text){
+        if(text.value ==='1'){
+          return "男";
+        }else{
+          return "女";
+        }
+      }
     },
     {
       title: '邮箱',
@@ -195,8 +214,8 @@ export default defineComponent({
     },
     {
       title: '所属部门',
-      dataIndex: 'departmentId',
-      key: 'departmentId',
+      dataIndex: 'departmentName',
+      key: 'departmentName',
     },
     {
       title: '工龄',

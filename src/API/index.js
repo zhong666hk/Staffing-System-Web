@@ -142,6 +142,15 @@ export function deleteNation(record){
     })
 }
 
+export function queryAllNation(){
+    //http://localhost:8090/api/
+    return request({
+        url: '/nation/query_all',
+        method: 'GET',
+
+    })
+}
+
 // =====================employee员工职位=============
 export function savePosition(position){
     //http://localhost:8090/api/
@@ -174,6 +183,16 @@ export function deletePosition(record){
     return request({
         url: '/position/delete/'+record.id,
         method: 'DELETE',
+    })
+}
+
+
+export function queryAllPosition(){
+    //http://localhost:8090/api/
+    return request({
+        url: '/position/query_all',
+        method: 'GET',
+
     })
 }
 
@@ -212,6 +231,15 @@ export function deleteDepartment(record){
     })
 }
 
+export function queryAllDepartment(){
+    //http://localhost:8090/api/
+    return request({
+        url: '/department/query_all',
+        method: 'GET',
+
+    })
+}
+
 
 // =====================employee员工职位级别=============
 export function saveJobLevel(department){
@@ -245,5 +273,61 @@ export function deleteJobLevel(record){
     return request({
         url: '/jobLevel/delete/'+record.id,
         method: 'DELETE',
+    })
+}
+
+
+export function queryAllJobLevel(){
+    //http://localhost:8090/api/
+    return request({
+        url: '/jobLevel/query_all',
+        method: 'GET',
+
+    })
+}
+
+
+// =====================employee员工简历=============
+export function saveResume(resume){
+    //http://localhost:8090/api/
+    return request({
+        url: "/resume/save",
+        method: 'POST',
+        data:{
+            ...resume
+        }
+    })
+}
+
+export function getResume(page,size){
+    //http://localhost:8090/api/
+    return request({
+        url: '/resume/query_list',
+        method: 'GET',
+        params:{
+            page,
+            size,
+        },
+    },{transformResponse: [
+            function (data){
+                return data;
+            }
+        ]})
+}
+
+export function deleteResume(record){
+    return request({
+        url: '/resume/delete/'+record.id,
+        method: 'DELETE',
+    })
+}
+
+export function approveResume(record){
+    return request({
+        url: "/resume/approve",
+        method: 'POST',
+        data:{
+            ...record
+        }
     })
 }

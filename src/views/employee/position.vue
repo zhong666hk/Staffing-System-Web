@@ -30,6 +30,9 @@
       <a-form-item label="职位">
         <a-input v-model:value="position.name" />
       </a-form-item>
+      <a-form-item label="所属部门">
+        <DepartmentSelectView width="200px" v-model="position.departmentName"></DepartmentSelectView>
+      </a-form-item>
     </a-form>
   </a-modal>
 </template>
@@ -38,15 +41,18 @@
 import { defineComponent, ref, onMounted } from 'vue';
 import {notification} from "ant-design-vue";
 import {deletePosition, getPosition, savePosition} from "@/API";
+import DepartmentSelectView from "@/components/Department-select-view.vue";
 
 
 export default defineComponent({
   name: "position-view",
+  components: {DepartmentSelectView},
   setup() {
     const visible = ref(false);
     let position = ref({
       id: undefined,
       name: undefined,
+      departmentName:undefined,
       createTime: undefined,
       updateTime: undefined,
     });
@@ -63,6 +69,11 @@ export default defineComponent({
       title: '职位',
       dataIndex: 'name',
       key: 'name',
+    },
+    {
+      title: '所属部门',
+      dataIndex: 'departmentName',
+      key: 'departmentName',
     },
     {
       title: '操作',

@@ -36,6 +36,12 @@
   <a-modal v-model:open="open" cancel-text="取消" ok-text="确认"
            title="员工" @ok="handleOk">
     <a-form :label-col="{span: 4}" :model="employee" :wrapper-col="{ span: 20 }">
+      <a-form-item label="工号">
+        <a-input v-model:value="employee.workId" />
+      </a-form-item>
+      <a-form-item label="姓名">
+        <a-input v-model:value="employee.name" />
+      </a-form-item>
       <a-form-item label="手机号">
         <a-input v-model:value="employee.mobile"/>
       </a-form-item>
@@ -45,19 +51,25 @@
           <a-radio :value=1>离职</a-radio>
         </a-radio-group>
       </a-form-item>
+
     </a-form>
   </a-modal>
 
   <a-modal v-model:open="open2" cancel-text="取消" ok-text="确认"
            title="修改密码" @ok="handleOk2">
-    <a-form :label-col="{span: 4}" :model="employee" :wrapper-col="{ span: 20 }">
-      <a-form-item label="旧密码">
+    <a-form :label-col="{span: 4}" :model="employee" :wrapper-col="{ span: 20 }"
+            @validate="handleValidate"
+            autocomplete="off">
+      <a-form-item label="旧密码"
+                   name="oldPassword">
         <a-input-password v-model:value="resetPassword.oldPassword"/>
       </a-form-item>
-      <a-form-item label="新密码">
+      <a-form-item label="新密码"
+                   name="newPassword">
         <a-input-password v-model:value="resetPassword.newPassword"/>
       </a-form-item>
-      <a-form-item label="确认新密码">
+      <a-form-item label="确认新密码"
+                   name="newPasswordAgain">
         <a-input-password v-model:value="resetPassword.newPasswordAgain"/>
       </a-form-item>
     </a-form>
@@ -81,6 +93,8 @@ export default defineComponent({
       password: undefined,
       createTime: undefined,
       isDelete: undefined,
+      name: undefined,
+      workId: undefined,
     });
     const resetPassword=ref({
       id: undefined,
@@ -97,6 +111,16 @@ export default defineComponent({
     });
     let loading = ref(false);
     const columns = [
+      {
+        title: '姓名',
+        dataIndex: 'name',
+        key: 'name',
+      },
+      {
+        title: '工号',
+        dataIndex: 'workId',
+        key: 'workId',
+      },
       {
         title: '手机号',
         dataIndex: 'mobile',
@@ -213,6 +237,22 @@ export default defineComponent({
         size: pagination.value.pageSize
       });
     });
+    const isUsable=ref(false);
+
+    /**
+     * 每次 校验都会触发一次
+     * @param name
+     * @param status
+     * @param errorMsgs
+     */
+    const handleValidate = (name,status,errorMsgs) => {
+      console.log("检查对象",name,status,errorMsgs)
+      if (status){
+        isUsable.value=false;
+      }else {
+        isUsable.value=true;
+      }
+    };
 
     return {
       employee,
@@ -231,6 +271,8 @@ export default defineComponent({
       changePassword,
       onDelete,
       resetPassword,
+      handleValidate,
+      isUsable,
     };
   },
 });

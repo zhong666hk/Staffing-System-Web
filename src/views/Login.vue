@@ -11,6 +11,7 @@
             autocomplete="off"
             @validate="handleValidate"
         >
+<!--          todo 管理员才能注册，员工只能登录-->
           <a-form-item
               label="Mobile"
               name="mobile"

@@ -26,15 +26,18 @@
   </a-table>
   <a-modal v-model:visible="visible" title="" @ok="handleOk"
            ok-text="确认" cancel-text="取消">
-    <a-form :model="department" :label-col="{span: 4}" :wrapper-col="{ span: 20 }">
+    <a-form :model="department" :label-col="{span: 6}" :wrapper-col="{ span: 16 }">
       <a-form-item label="部门名称">
         <a-input v-model:value="department.name" />
       </a-form-item>
-      <a-form-item label="">
-        <a-input v-model:value="department.parentid" />
+      <a-form-item label="上司部门名称">
+        <department-select-view width="200px" v-model="department.parentDepartment"></department-select-view>
       </a-form-item>
-      <a-form-item label="">
-        <a-input v-model:value="department.isparent" />
+      <a-form-item label="是否是父部门">
+        <a-radio-group v-model:value="department.isparent">
+          <a-radio :value=0>是</a-radio>
+          <a-radio :value=1>否</a-radio>
+        </a-radio-group>
       </a-form-item>
       <a-form-item label="部门总人数">
         <a-input v-model:value="department.count" />
@@ -47,10 +50,11 @@
 import { defineComponent, ref, onMounted } from 'vue';
 import {notification} from "ant-design-vue";
 import {deleteDepartment, getDepartment, saveDepartment} from "@/API";
-
+import DepartmentSelectView from "@/components/Department-select-view.vue";
 
 export default defineComponent({
   name: "department-view",
+  components: { DepartmentSelectView},
   setup() {
     const visible = ref(false);
     let department = ref({
@@ -58,7 +62,7 @@ export default defineComponent({
       updateTime: undefined,
       createTime: undefined,
       name: undefined,
-      parentid: undefined,
+      parentDepartment: undefined,
       isparent: undefined,
       count: undefined,
     });
@@ -77,12 +81,12 @@ export default defineComponent({
       key: 'name',
     },
     {
-      title: '',
-      dataIndex: 'parentid',
-      key: 'parentid',
+      title: '上司部门',
+      dataIndex: 'parentDepartment',
+      key: 'parentDepartment',
     },
     {
-      title: '',
+      title: '是否是父部门',
       dataIndex: 'isparent',
       key: 'isparent',
     },
