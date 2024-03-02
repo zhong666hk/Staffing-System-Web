@@ -57,6 +57,21 @@ const routes = [
         name: 'resume',
         component: () => import('../views/employee/resume.vue')
       },
+      {
+        path: '/salary',
+        name: 'salary',
+        component: () => import('../views/employee/salary.vue')
+      },
+    {
+      path: '/employee_train',
+      name: 'employee_train',
+      component: () => import('../views/train/employee_train.vue')
+    },
+    {
+      path: '/message_notification',
+      name: 'message_notification',
+      component: () => import('../views/notification/message_notification.vue')
+    },
     ]
   },
 

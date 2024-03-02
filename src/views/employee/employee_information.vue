@@ -19,7 +19,7 @@
               ok-text="确认" cancel-text="取消">
             <a style="color: red">删除</a>
           </a-popconfirm>
-          <a @click="onEdit(record)">编辑</a>
+          <a @click="onEdit(record)">查看详细信息</a>
         </a-space>
       </template>
 
@@ -29,13 +29,11 @@
            ok-text="确认" cancel-text="取消">
     <a-form :model="employeeInformation" :label-col="{span: 4}" :wrapper-col="{ span: 18 }">
       <a-form-item label="员工姓名" name="name">
-        <a-input v-model:value="employeeInformation.name" />
+        <span>{{employeeInformation.name}}</span>
       </a-form-item>
       <a-form-item label="性别" name="gender">
-        <a-radio-group v-model:value="employeeInformation.gender" name="genderGroup">
-          <a-radio value="1">男</a-radio>
-          <a-radio value="2">女</a-radio>
-        </a-radio-group>
+        <span v-if="employeeInformation.gender==='1'">男</span>
+        <span v-else>女</span>
       </a-form-item>
       <a-form-item label="出生日期" name="birthday">
         <a-date-picker v-model:value="employeeInformation.birthday" valueFormat="YYYY-MM-DD" placeholder="请选择日期" />
@@ -43,7 +41,7 @@
       <a-form-item label="身份证号" name="idCard"
                    :rules="[{ required: true, message: '请输入正确的身份证号!', pattern:/^([1-6][1-9]|50)\d{4}(18|19|20)\d{2}((0[1-9])|10|11|12)(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,trigger: 'blur'}]"
       >
-        <a-input v-model:value="employeeInformation.idCard" />
+        <a-input v-model:value="employeeInformation.idCard" :bordered="false" />
       </a-form-item>
       <a-form-item label="民族" name="nationName">
 <!--        <a-input v-model:value="employeeInformation.nationId" />-->
@@ -55,15 +53,15 @@
       <a-form-item label="邮箱" name="email"
                    :rules="[{ required: true, message: '请输入正确的邮箱!', pattern:/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/,trigger: 'blur'}]"
       >
-        <a-input v-model:value="employeeInformation.email" />
+        <a-input v-model:value="employeeInformation.email" :bordered="false" />
       </a-form-item>
       <a-form-item label="电话号码" name="phone"
                    :rules="[{ required: true, message: '请输入正确的手机号!', pattern:/^(^\d{11}$)$/,trigger: 'blur'}]"
       >
-        <a-input v-model:value="employeeInformation.phone" />
+        <a-input v-model:value="employeeInformation.phone" :bordered="false" />
       </a-form-item>
       <a-form-item label="联系地址" name="address">
-        <a-input v-model:value="employeeInformation.address" />
+        <a-input v-model:value="employeeInformation.address" :bordered="false" />
       </a-form-item>
       <a-form-item label="所属部门" name="departmentName">
 <!--        <a-input v-model:value="employeeInformation.departmentId" />-->
@@ -78,13 +76,13 @@
         <PositionSelectView width="200px" v-model="employeeInformation.posName"></PositionSelectView>
       </a-form-item>
       <a-form-item label="最高学历" name="tiptopDegree">
-        <a-input v-model:value="employeeInformation.tiptopDegree" />
+        <a-input v-model:value="employeeInformation.tiptopDegree" :bordered="false" />
       </a-form-item>
       <a-form-item label="所属专业" name="specialty">
-        <a-input v-model:value="employeeInformation.specialty" />
+        <a-input v-model:value="employeeInformation.specialty" :bordered="false" />
       </a-form-item>
       <a-form-item label="毕业院校" name="school">
-        <a-input v-model:value="employeeInformation.school" />
+        <a-input v-model:value="employeeInformation.school" :bordered="false" />
       </a-form-item>
       <a-form-item label="入职日期" name="beginDate">
         <a-date-picker v-model:value="employeeInformation.beginDate" valueFormat="YYYY-MM-DD" placeholder="请选择日期" />
@@ -99,7 +97,7 @@
 <!--        <a-input v-model:value="employeeInformation.workId" />-->
 <!--      </a-form-item>-->
       <a-form-item label="合同期限" name="contractTerm">
-        <a-input v-model:value="employeeInformation.contractTerm" />
+        <a-input v-model:value="employeeInformation.contractTerm" :bordered="false" />
       </a-form-item>
       <a-form-item label="转正日期" name="conversionTime">
         <a-date-picker v-model:value="employeeInformation.conversionTime" valueFormat="YYYY-MM-DD" placeholder="请选择日期" />
@@ -114,7 +112,7 @@
         <a-date-picker v-model:value="employeeInformation.endContract" valueFormat="YYYY-MM-DD" placeholder="请选择日期" />
       </a-form-item>
       <a-form-item label="工龄" name="workAge">
-        <a-input v-model:value="employeeInformation.workAge" />
+        <a-input v-model:value="employeeInformation.workAge" :bordered="false"/>
       </a-form-item>
 <!--      <a-form-item label="员工id" name="employeeId">-->
 <!--        <a-input v-model:value="employeeInformation.employeeId" />-->

@@ -115,6 +115,12 @@ export default defineComponent({
             <UnorderedListOutlined />公告管理
           </span>
           </template>
+          <a-menu-item key="/message_notification">
+            <video-camera-outlined />
+            <router-link to="/message_notification">
+              <span class="nav-text">消息通知</span>
+            </router-link>
+          </a-menu-item>
 
         </a-sub-menu>
 
@@ -124,6 +130,12 @@ export default defineComponent({
             <UnorderedListOutlined />薪资管理
           </span>
           </template>
+          <a-menu-item key="/salary">
+            <video-camera-outlined />
+            <router-link to="/salary">
+              <span class="nav-text">员工薪资</span>
+            </router-link>
+          </a-menu-item>
         </a-sub-menu>
 
         <a-sub-menu key="train">
@@ -132,6 +144,12 @@ export default defineComponent({
             <UnorderedListOutlined />培训管理
           </span>
           </template>
+          <a-menu-item key="/employee_train">
+            <video-camera-outlined />
+            <router-link to="/employee_train">
+              <span class="nav-text">员工培训</span>
+            </router-link>
+          </a-menu-item>
         </a-sub-menu>
 
       </a-menu>

@@ -2,7 +2,7 @@ import {request} from "@/config/Axios";
 //每一个请求都被封装为一个实例
 
 //============================登录======================
-export function loginReq(mobile,password){
+export function loginReq(mobile, password) {
     //http://localhost:8090/api/
     return request({
         url: '/employee/login',
@@ -14,7 +14,7 @@ export function loginReq(mobile,password){
     })
 }
 
-export function registerReq(mobile,password){
+export function registerReq(mobile, password) {
     //http://localhost:8090/api/
     return request({
         url: '/employee/register',
@@ -25,124 +25,140 @@ export function registerReq(mobile,password){
         }
     })
 }
+
 // =====================employee员工账号=============
-export function saveEmployee(employee){
+export function saveEmployee(employee) {
     //http://localhost:8090/api/
     return request({
         url: "/employee/save",
         method: 'POST',
-        data:{
+        data: {
             ...employee
         }
     })
 }
 
 // 火车座位
-export function getEmployee(page,size){
+export function getEmployee(page, size) {
     //http://localhost:8090/api/
     return request({
         url: '/employee/query_list',
         method: 'GET',
-        params:{
+        params: {
             page,
             size,
         },
-    },{transformResponse: [
-            function (data){
+    }, {
+        transformResponse: [
+            function (data) {
                 return data;
             }
-        ]})
+        ]
+    })
 }
 
-export function deleteEmployee(record){
+export function deleteEmployee(record) {
     return request({
-        url: '/employee/delete/'+record.id,
+        url: '/employee/delete/' + record.id,
         method: 'DELETE',
     })
 }
 
 //修改密码
-export function resetEmployeePassword(resetPassword){
+export function resetEmployeePassword(resetPassword) {
     return request({
         url: '/employee/resetPassword',
         method: 'POST',
-        data:{
+        data: {
             ...resetPassword
         }
     })
 }
 
 // =====================employee员工详细信息=============
-export function saveEmployeeInformation(employeeInformation){
+export function saveEmployeeInformation(employeeInformation) {
     //http://localhost:8090/api/
     return request({
         url: "/employeeInformation/save",
         method: 'POST',
-        data:{
+        data: {
             ...employeeInformation
         }
     })
 }
 
-export function getEmployeeInformation(page,size){
+export function getEmployeeInformation(page, size) {
     //http://localhost:8090/api/
     return request({
         url: '/employeeInformation/query_list',
         method: 'GET',
-        params:{
+        params: {
             page,
             size,
         },
-    },{transformResponse: [
-            function (data){
+    }, {
+        transformResponse: [
+            function (data) {
                 return data;
             }
-        ]})
+        ]
+    })
 }
 
-export function deleteEmployeeInformation(record){
+export function deleteEmployeeInformation(record) {
     return request({
-        url: '/employeeInformation/delete/'+record.id,
+        url: '/employeeInformation/delete/' + record.id,
         method: 'DELETE',
     })
 }
 
+export function queryAllEmployee() {
+    //http://localhost:8090/api/
+    return request({
+        url: '/employee/query_all',
+        method: 'GET',
+
+    })
+}
+
 // =====================employee员工民族=============
-export function saveNation(nation){
+export function saveNation(nation) {
     //http://localhost:8090/api/
     return request({
         url: "/nation/save",
         method: 'POST',
-        data:{
+        data: {
             ...nation
         }
     })
 }
 
-export function getNation(page,size){
+export function getNation(page, size) {
     //http://localhost:8090/api/
     return request({
         url: '/nation/query_list',
         method: 'GET',
-        params:{
+        params: {
             page,
             size,
         },
-    },{transformResponse: [
-            function (data){
+    }, {
+        transformResponse: [
+            function (data) {
                 return data;
             }
-        ]})
+        ]
+    })
 }
 
-export function deleteNation(record){
+export function deleteNation(record) {
     return request({
-        url: '/nation/delete/'+record.id,
+        url: '/nation/delete/' + record.id,
         method: 'DELETE',
     })
 }
 
-export function queryAllNation(){
+export function queryAllNation() {
     //http://localhost:8090/api/
     return request({
         url: '/nation/query_all',
@@ -152,42 +168,44 @@ export function queryAllNation(){
 }
 
 // =====================employee员工职位=============
-export function savePosition(position){
+export function savePosition(position) {
     //http://localhost:8090/api/
     return request({
         url: "/position/save",
         method: 'POST',
-        data:{
+        data: {
             ...position
         }
     })
 }
 
-export function getPosition(page,size){
+export function getPosition(page, size) {
     //http://localhost:8090/api/
     return request({
         url: '/position/query_list',
         method: 'GET',
-        params:{
+        params: {
             page,
             size,
         },
-    },{transformResponse: [
-            function (data){
+    }, {
+        transformResponse: [
+            function (data) {
                 return data;
             }
-        ]})
+        ]
+    })
 }
 
-export function deletePosition(record){
+export function deletePosition(record) {
     return request({
-        url: '/position/delete/'+record.id,
+        url: '/position/delete/' + record.id,
         method: 'DELETE',
     })
 }
 
 
-export function queryAllPosition(){
+export function queryAllPosition() {
     //http://localhost:8090/api/
     return request({
         url: '/position/query_all',
@@ -197,41 +215,43 @@ export function queryAllPosition(){
 }
 
 // =====================employee员工部门=============
-export function saveDepartment(department){
+export function saveDepartment(department) {
     //http://localhost:8090/api/
     return request({
         url: "/department/save",
         method: 'POST',
-        data:{
+        data: {
             ...department
         }
     })
 }
 
-export function getDepartment(page,size){
+export function getDepartment(page, size) {
     //http://localhost:8090/api/
     return request({
         url: '/department/query_list',
         method: 'GET',
-        params:{
+        params: {
             page,
             size,
         },
-    },{transformResponse: [
-            function (data){
+    }, {
+        transformResponse: [
+            function (data) {
                 return data;
             }
-        ]})
+        ]
+    })
 }
 
-export function deleteDepartment(record){
+export function deleteDepartment(record) {
     return request({
-        url: '/department/delete/'+record.id,
+        url: '/department/delete/' + record.id,
         method: 'DELETE',
     })
 }
 
-export function queryAllDepartment(){
+export function queryAllDepartment() {
     //http://localhost:8090/api/
     return request({
         url: '/department/query_all',
@@ -242,42 +262,44 @@ export function queryAllDepartment(){
 
 
 // =====================employee员工职位级别=============
-export function saveJobLevel(department){
+export function saveJobLevel(department) {
     //http://localhost:8090/api/
     return request({
         url: "/jobLevel/save",
         method: 'POST',
-        data:{
+        data: {
             ...department
         }
     })
 }
 
-export function getJobLevel(page,size){
+export function getJobLevel(page, size) {
     //http://localhost:8090/api/
     return request({
         url: '/jobLevel/query_list',
         method: 'GET',
-        params:{
+        params: {
             page,
             size,
         },
-    },{transformResponse: [
-            function (data){
+    }, {
+        transformResponse: [
+            function (data) {
                 return data;
             }
-        ]})
+        ]
+    })
 }
 
-export function deleteJobLevel(record){
+export function deleteJobLevel(record) {
     return request({
-        url: '/jobLevel/delete/'+record.id,
+        url: '/jobLevel/delete/' + record.id,
         method: 'DELETE',
     })
 }
 
 
-export function queryAllJobLevel(){
+export function queryAllJobLevel() {
     //http://localhost:8090/api/
     return request({
         url: '/jobLevel/query_all',
@@ -288,46 +310,123 @@ export function queryAllJobLevel(){
 
 
 // =====================employee员工简历=============
-export function saveResume(resume){
+export function saveResume(resume) {
     //http://localhost:8090/api/
     return request({
         url: "/resume/save",
         method: 'POST',
-        data:{
+        data: {
             ...resume
         }
     })
 }
 
-export function getResume(page,size){
+export function getResume(page, size) {
     //http://localhost:8090/api/
     return request({
         url: '/resume/query_list',
         method: 'GET',
-        params:{
+        params: {
             page,
             size,
         },
-    },{transformResponse: [
-            function (data){
+    }, {
+        transformResponse: [
+            function (data) {
                 return data;
             }
-        ]})
+        ]
+    })
 }
 
-export function deleteResume(record){
+export function deleteResume(record) {
     return request({
-        url: '/resume/delete/'+record.id,
+        url: '/resume/delete/' + record.id,
         method: 'DELETE',
     })
 }
 
-export function approveResume(record){
+export function approveResume(record) {
     return request({
         url: "/resume/approve",
         method: 'POST',
-        data:{
+        data: {
             ...record
         }
+    })
+}
+
+// =====================employee员工薪资=============
+export function saveSalary(salary) {
+    //http://localhost:8090/api/
+    return request({
+        url: "/salary/save",
+        method: 'POST',
+        data: {
+            ...salary
+        }
+    })
+}
+
+export function getSalary(page, size) {
+    //http://localhost:8090/api/
+    return request({
+        url: '/salary/query_list',
+        method: 'GET',
+        params: {
+            page,
+            size,
+        },
+    }, {
+        transformResponse: [
+            function (data) {
+                return data;
+            }
+        ]
+    })
+}
+
+export function deleteSalary(record) {
+    return request({
+        url: '/salary/delete/' + record.id,
+        method: 'DELETE',
+    })
+}
+
+
+// =====================employee员工培训=============
+export function saveEmployeeTrain(employeeTrain) {
+    //http://localhost:8090/api/
+    return request({
+        url: "/employeeTrain/save",
+        method: 'POST',
+        data: {
+            ...employeeTrain
+        }
+    })
+}
+
+export function getEmployeeTrain(page, size) {
+    //http://localhost:8090/api/
+    return request({
+        url: '/employeeTrain/query_list',
+        method: 'GET',
+        params: {
+            page,
+            size,
+        },
+    }, {
+        transformResponse: [
+            function (data) {
+                return data;
+            }
+        ]
+    })
+}
+
+export function deleteEmployeeTrain(record) {
+    return request({
+        url: '/employeeTrain/delete/' + record.id,
+        method: 'DELETE',
     })
 }

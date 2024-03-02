@@ -77,10 +77,13 @@
         <a-input v-model:value="resume.school" />
       </a-form-item>
       <a-form-item label="职业技能描述">
-        <a-input v-model:value="resume.vocationalSkills" />
+        <a-textarea v-model:value="resume.vocationalSkills" :rows="4" placeholder="技能描述" :maxlength="255" />
       </a-form-item>
       <a-form-item label="自我描述">
-        <a-input v-model:value="resume.introduction" />
+        <a-textarea v-model:value="resume.introduction" :rows="4" placeholder="自我描述" :maxlength="255" />
+      </a-form-item>
+      <a-form-item label="期待薪资">
+        <a-input v-model:value="resume.salary" />
       </a-form-item>
     </a-form>
   </a-modal>
@@ -121,6 +124,7 @@ export default defineComponent({
       introduction: undefined,
       createTime: undefined,
       updateTime: undefined,
+      salary: undefined,
     });
     const resumes = ref([]);
     // 分页的三个属性名是固定的
@@ -137,7 +141,7 @@ export default defineComponent({
       key: 'name',
     },
     {
-      title: '性别 1为男 2为女',
+      title: '性别',
       dataIndex: 'gender',
       key: 'gender',
       customRender:function (text){
@@ -198,6 +202,11 @@ export default defineComponent({
       title: '职业技能描述',
       dataIndex: 'vocationalSkills',
       key: 'vocationalSkills',
+    },
+    {
+      title: '期待薪资',
+      dataIndex: 'salary',
+      key: 'salary',
     },
     {
       title: '自我描述',
